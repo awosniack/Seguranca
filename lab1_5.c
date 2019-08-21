@@ -25,14 +25,15 @@ int main (){
 	BN_hex2bn(&s, "643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6802F");
 	BN_dec2bn(&e, "65537");
 	BN_hex2bn(&n, "AE1CD4DC432798D933779FBD46C6E1247F0CF1233595113AA51B450F18116115");
-	//Launch a missle. - mensagem codificada em hexa
-	BN_hex2bn(&m, "4c61756e63682061206d6973736c652e");
+	//Launch a missile. - mensagem codificada em hexa
+	BN_hex2bn(&m, "4c61756e63682061206d697373696c652e");
 
 	
 	//assinando com a chave S privada
-	BN_mod_exp(m_s, m, s, n, ctx);
+	BN_mod_exp(m_s, s, e, n, ctx);
 
 	//verificando a assinatura com a chave publica
-	BN_mod_exp(m_d, m_s, e, n, ctx);
-	printBN("verificacao de assinatura = ", m_d);
+	// BN_mod_exp(m_d, m_s, e, n, ctx);
+	printBN("verificacao de assinatura = ", m_s);
 }
+
